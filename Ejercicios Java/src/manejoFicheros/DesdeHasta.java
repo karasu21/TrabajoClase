@@ -28,7 +28,6 @@ public class DesdeHasta {
 		}
 		dos.close();
 		pw.close();
-		String contenido;
 		System.out.println("Introduce ruta de archivo a leer: ");
 		String rutaBin = Entrada.cadena();
 		DataInputStream dis = new DataInputStream(new FileInputStream(new File(rutaBin)));

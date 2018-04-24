@@ -11,16 +11,22 @@ import java.io.IOException;
 public class LeerBinario {
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("Introduzca ruta archivo txt a leer");
-		String rutaInt = Entrada.cadena();
-		BufferedReader bfr = new BufferedReader(new FileReader(new File(rutaInt)));
-		System.out.println("Numero Int:" + bfr.readLine());
-		bfr.close();
-		System.out.println("Introduzca ruta archivo bin a leer");
-		String rutaBin = Entrada.cadena();
+		String rutaBin = "E:\\PROGRAMACION\\Prueba\\Personas.bin";
 		DataInputStream dis = new DataInputStream(new FileInputStream(new File(rutaBin)));
-		System.out.println("Numero Int:" +dis.readInt()+ dis.readLong()+dis.readShort());
-		dis.close();
+		try {
+			while (true) {
+				String dni = dis.readUTF();
+				String nombre = dis.readUTF();
+				char sexo = dis.readChar();
+				String fecha = dis.readUTF();
+				double altura = dis.readDouble();
+				double peso = dis.readDouble();
+				System.out.println(dni + ";" + nombre + ";" + sexo + ";" + fecha + ";" + altura + ";" + peso);
+			}
+		} catch (Exception e) {
+
+			dis.close();
+		}
 
 	}
 

@@ -1,10 +1,16 @@
 package baseDeDatos;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -39,9 +45,11 @@ public class GestionPersonasArrayList {
 		m.agregarOpcion("Listado (ordenado por Edad)");
 		m.agregarOpcion("Listado (ordenado por Altura)");
 		m.agregarOpcion("Listado (ordenado por DNI)");
-		m.agregarOpcion("Exportar a fichero");
-		m.agregarOpcion("Importar desde fichero");
-		m.agregarOpcion("Listado");
+		m.agregarOpcion("Exportar a fichero txt");
+		m.agregarOpcion("Importar desde fichero txt");
+		m.agregarOpcion("Exportar a Personas.html");
+		m.agregarOpcion("Exportar a Personas.bin");
+		m.agregarOpcion("Importar desde Personas.bin");
 
 		m.agregarOpcion("Salir");
 		String op;
@@ -78,6 +86,15 @@ public class GestionPersonasArrayList {
 				break;
 			case "10":
 				importarFichero();
+				break;
+			case "11":
+				exportarAHtml();
+				break;
+			case "12":
+				exportarABin();
+				break;
+			case "13":
+				importarBin();
 				break;
 			}
 		} while (!op.equals("0"));
@@ -182,7 +199,6 @@ public class GestionPersonasArrayList {
 
 		Persona p = new Persona(nombre, fecha, sexo, peso, altura);
 		bd.add(p);
-
 	}
 
 	// Devuelve posicion del array donde se encuentra el dni . Devuelve -1 si no
@@ -241,10 +257,86 @@ public class GestionPersonasArrayList {
 		String ruta = Entrada.cadena();
 		PrintWriter pw = new PrintWriter(new FileWriter(new File(ruta), true));
 		for (int i = 0; i < bd.size(); i++) {
-			pw.println(bd.get(i));
+			pw.println(bd.get(i).getNombre() + ";" + bd.get(i).getDni() + ";" + bd.get(i).getSexo() + ";"
+					+ bd.get(i).getAnios() + ";" + bd.get(i).getAltura() + ";" + bd.get(i).getPeso());
 		}
 
 		pw.close();
+
+		System.out.println("Base de datos guardada en " + ruta);
+	}
+
+	private static void exportarAHtml() throws IOException {
+		System.out.println("Introduce ruta donde se creara el archivo: ");
+		String ruta = "E:\\PROGRAMACION\\Prueba\\Personas.html";
+		PrintWriter pw = new PrintWriter(new FileWriter(new File(ruta), false));
+		pw.println("<!DOCTYPE HTML>\r\n" + "<html>\r\n" + "<head>\r\n" + "<meta charset=\"UTF-8\">\r\n"
+				+ "<title>Base de datos Personas</title>\r\n" + "<style>\r\n" + "table { margin-left: auto;\r\n"
+				+ "margin-right: auto;" +
+
+				"margin-left: auto;\r\n" + "margin-right: auto;\r\n" + "text-align: center;\r\n"
+				+ "border: 1px solid black;\r\n" + "width: 800px;\r\n" + "height: auto;}\r\n"
+				+ "td { border: 1px solid black;\r\n" + "width: 30%;\r\n" + "}" + "</style>\r\n" + "</head>\r\n"
+				+ "<body>");
+		pw.println("<table>\r\n" + "<tr>\r\n" + "<td>DNI</td>\r\n" + "<td>Nombre</td>\r\n" + "<td>Sexo</td>\r\n"
+				+ "<td>Edad</td>\r\n" + "<td>Altura</td>\r\n" + "<td>Peso</td>\r\n" + "</tr>");
+
+		for (int i = 0; i < bd.size(); i++) {
+			pw.println("<tr>\r\n" + "<td>" + bd.get(i).getDni() + "</td>\r\n" + "<td>" + bd.get(i).getNombre()
+					+ "</td>\r\n" + "<td>" + bd.get(i).getSexo() + "</td>\r\n" + "<td>" + bd.get(i).getAnios()
+					+ "</td>\r\n" + "<td>" + bd.get(i).getAltura() + "</td>\r\n" + "<td>" + bd.get(i).getPeso()
+					+ "</td>\r\n" + "</tr>");
+		}
+
+		pw.println("</table>\r\n" + "</body>\r\n" + "</html>");
+		pw.close();
+		System.out.println("\nPersona.html creado");
+	}
+
+	private static void importarBin() throws IOException {
+		String rutaBin = "E:\\PROGRAMACION\\Prueba\\Personas.bin";
+		DataInputStream dis = new DataInputStream(new FileInputStream(new File(rutaBin)));
+		Persona p = null;
+		try {
+			while (true) {
+				String dni = dis.readUTF();
+				String nombre = dis.readUTF();
+				char sexo = dis.readChar();
+				String fechaC = dis.readUTF();
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				sdf.setLenient(false);
+				Date d;
+				d = sdf.parse(fechaC);
+				double altura = dis.readDouble();
+				double peso = dis.readDouble();
+				p = new Persona(nombre, d, sexo, peso, altura);
+				bd.add(p);
+			}
+		} catch (Exception e) {
+
+			dis.close();
+		}
+		
+	}
+
+	private static void exportarABin() throws IOException {
+		String ruta = "E:\\PROGRAMACION\\Prueba\\Personas.bin";
+		DataOutputStream dos = new DataOutputStream(new FileOutputStream(new File(ruta)));
+		for (int i = 0; i < bd.size(); i++) {
+			dos.writeUTF(bd.get(i).getNombre());
+			dos.writeUTF(bd.get(i).getDni());
+			dos.writeChar(bd.get(i).getSexo());
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			String fecha = sdf.format(bd.get(i).getFechaNac());
+			dos.writeUTF(fecha);
+			dos.writeDouble(bd.get(i).getAltura());
+			dos.writeDouble(bd.get(i).getPeso());
+		}
+
+		dos.close();
+
+		System.out.println("Base de datos guardada en " + ruta);
+
 	}
 
 }
