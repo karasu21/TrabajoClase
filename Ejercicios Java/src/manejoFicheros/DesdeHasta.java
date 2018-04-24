@@ -1,9 +1,13 @@
 package manejoFicheros;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +28,20 @@ public class DesdeHasta {
 		}
 		dos.close();
 		pw.close();
+		String contenido;
+		System.out.println("Introduce ruta de archivo a leer: ");
+		String rutaBin = Entrada.cadena();
+		DataInputStream dis = new DataInputStream(new FileInputStream(new File(rutaBin)));
+		try {
+			while (true) {
+				int numero = dis.readInt();
+				System.out.println(numero);
+			}
+		} catch (Exception e) {
+
+			dis.close();
+		}
+
 	}
 
 }
