@@ -1,0 +1,107 @@
+--1
+SELECT name FROM country WHERE GNP > (SELECT GNP FROM country WHERE name = "france");
+
+--2
+SELECT name FROM city WHERE ID = (SELECT capital FROM country WHERE continent="Asia" ORDER BY SurfaceArea LIMIT 1);
+
+--3
+SELECT name FROM country WHERE code IN (SELECT CountryCode FROM countrylanguage  GROUP BY CountryCode HAVING Count(Language)>10);
+
+--4
+SELECT name FROM city WHERE district IN (SELECT district FROM city WHERE name="paris");
+
+--5
+SELECT APELLIDO, OFICIO 
+FROM EMPLEADOS 
+WHERE DEP_NO = 10 
+	AND OFICIO IN 
+		(SELECT OFICIO 
+		FROM EMPLEADOS E 
+			JOIN DEPARTAMENTOS D 
+				ON E.DEP_NO=D.DEP_NO 
+			WHERE DNOMBRE="VENTAS"); 
+
+--6
+SELECT DESCRIPCION 
+FROM ARTICULO 
+WHERE id_art IN (
+	SELECT id_art 
+	FROM STOCK
+	GROUP BY id_art HAVING COUNT(id_alm)<2);
+
+--CONT--
+
+--1--
+SELECT APELLIDO 
+FROM EMPLEADOS E 
+WHERE EXISTS (SELECT * FROM EMPLEADOS EM
+WHERE E.EMP_NO = EM.DIRECTOR AND E.SALARIO>EM.SALARIO);
+
+--2
+SELECT direccion
+FROM ALMACEN A
+WHERE EXISTS (SELECT * FROM STOCK S
+WHERE A.id_alm = S.id_alm AND S.id_art = "P2");
+
+--3
+SELECT id_art, descripcion 
+FROM ARTICULO AR
+WHERE EXISTS (SELECT * FROM STOCK X WHERE AR.id_art = X.id_art  HAVING 2*COUNT(id_alm) >= (SELECT COUNT(id_alm) FROM ALMACEN));
+
+
+--4.a
+SELECT nombre
+FROM PROVEEDOR
+WHERE id_prov IN (SELECT AR.PROVEEDOR FROM ARTICULO AR
+WHERE AR.id_art NOT IN (SELECT S.id_art FROM STOCK S));
+
+
+--4.b
+SELECT nombre
+FROM PROVEEDOR
+WHERE NOT EXISTS (SELECT * FROM ARTICULO AR
+WHERE id_prov = PROVEEDOR AND  EXISTS (SELECT * FROM STOCK S WHERE AR.id_art = S.id_art));
+
+--5
+SELECT name
+FROM country X
+WHERE 2*population > (SELECT SUM(population) FROM country C GROUP BY continent HAVING X.continent = C.continent);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
