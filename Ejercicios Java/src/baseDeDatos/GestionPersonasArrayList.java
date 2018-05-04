@@ -8,14 +8,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-public class GestionPersonasArrayList {
+public class GestionPersonasArrayList implements Serializable {
 
 	private static ArrayList<Persona> bd;
 
@@ -28,11 +31,9 @@ public class GestionPersonasArrayList {
 		Collections.sort(bd);
 		Persona a = new Persona("Ana", d = new Date(), 'H', 70, 200);
 		Persona b = new Persona("Pepe", d = new Date(), 'H', 80, 100);
-		Persona c = new Persona("Ana", d = new Date(), 'M', 50, 100);
 		Persona e = new Persona("Ines", d = new Date(), 'M', 70, 100);
 		bd.add(a);
 		bd.add(b);
-		bd.add(c);
 		bd.add(e);
 
 		Collections.sort(bd, new OrdenacionPorPeso());
@@ -50,6 +51,8 @@ public class GestionPersonasArrayList {
 		m.agregarOpcion("Exportar a Personas.html");
 		m.agregarOpcion("Exportar a Personas.bin");
 		m.agregarOpcion("Importar desde Personas.bin");
+		m.agregarOpcion("Exportar a Personas.obg");
+		m.agregarOpcion("Importar desde Personas.obg");
 
 		m.agregarOpcion("Salir");
 		String op;
@@ -95,6 +98,12 @@ public class GestionPersonasArrayList {
 				break;
 			case "13":
 				importarBin();
+				break;
+			case "14":
+				exportarAObg();
+				break;
+			case "15":
+				importarObg();
 				break;
 			}
 		} while (!op.equals("0"));
@@ -316,7 +325,7 @@ public class GestionPersonasArrayList {
 
 			dis.close();
 		}
-		
+
 	}
 
 	private static void exportarABin() throws IOException {
@@ -336,6 +345,54 @@ public class GestionPersonasArrayList {
 		dos.close();
 
 		System.out.println("Base de datos guardada en " + ruta);
+
+	}
+
+	private static void importarObg() {
+		ObjectInputStream oos = null;
+		String ruta = "E:\\PROGRAMACION\\Prueba\\Personas.obg";
+		try {
+			// apertura del fichero
+			oos = new ObjectInputStream(new FileInputStream(new File(ruta)));
+
+			Persona p = (Persona) oos.readObject();
+			bd.add(p);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			if (oos != null)
+				try {
+					oos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+
+	}
+
+	private static void exportarAObg() {
+		ObjectOutputStream oos = null;
+		String ruta = "E:\\PROGRAMACION\\Prueba\\Personas.obg";
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(new File(ruta)));
+			for (int i = 0; i < bd.size(); i++) {
+				oos.writeObject(bd.get(i));
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (oos != null)
+				try {
+					oos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
 
 	}
 
