@@ -25,7 +25,7 @@ public class SetPruebas {
 		for (Integer i : s) {
 			System.out.println(i);
 				}
-		System.out.println("Intentos duplicados: " + repetido);
+		System.out.println("Intentos duplicadoss: " + repetido);
 	}
 
 }
