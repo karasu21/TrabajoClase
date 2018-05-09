@@ -17,3 +17,31 @@ return <libro>
 </libro>
 
 
+---3---
+let $c:= /bookstore/book/price
+return <total>
+{$c}
+</total>
+
+---4---
+
+for $b in doc ("books.xml")/bookstore/book
+return <libro>
+<Titulo>
+{$b/title/text()}
+</Titulo>
+<N_Autores>
+{$b/count(author)}
+</N_Autores>
+</libro>
+
+---5---
+let $b :=/bookstore/book/price
+let $c := sum(/bookstore/book/price)
+return <libro>
+{$b}
+<Total>{$c}</Total>
+</libro>
+
+---6---
+
