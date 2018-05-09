@@ -89,3 +89,5 @@ DBMS_OUTPUT.PUT_LINE(RPAD(v_name, 10, ' ') || n_phone.count);
 END LOOP;
 CLOSE c_name;
 END;
+
+SELECT name,CARDINALITY(phone) "Numero de telefono" FROM company3_nested;
