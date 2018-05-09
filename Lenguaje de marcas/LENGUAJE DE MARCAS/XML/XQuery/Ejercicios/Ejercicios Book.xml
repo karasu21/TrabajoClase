@@ -44,4 +44,42 @@ return <libro>
 </libro>
 
 ---6---
+for $b in doc ("books.xml")/bookstore/book
+where every $a in $b/year
+satisfies ends-with($b/year,"3")
+return <libro>
+{$b}
+</libro>
 
+---7---
+
+for $b in doc ("books.xml")/bookstore/book
+where some $a in $b/@category
+satisfies starts-with($b//@category,"C")
+return <libro>
+{$b}
+</libro>
+
+---8---
+
+for $b in doc ("books.xml")/bookstore/book
+where some  $a in $b/title satisfies
+contains($b/title,"X") or contains ($b/title,"x")
+return <libro>
+{$b}
+</libro>
+
+---9---
+
+for $b in doc ("books.xml")/bookstore/book
+return 
+<titulo>
+{$b/title/text()} ({string-length($b/title/text())})</titulo>
+
+---10---
+
+for $b in distinct-values (doc("books.xml")/bookstore/book/author) order by string-length($b)
+return 
+<titulo>{$b} ({string-length($b)})</titulo>
+
+---11---
