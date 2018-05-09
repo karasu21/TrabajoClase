@@ -1,0 +1,19 @@
+---1---
+
+let $min := min(/bookstore/book/price)
+let $max := max(/bookstore/book/price)
+return <resultado>
+<min>{$min}</min>
+ <max>{$max}</max>
+</resultado>
+
+---2---
+
+for $b in doc ("books.xml")/bookstore/book
+return <libro>
+<Titulo>{$b/title/text()}</Titulo>
+<Precio>{$b/price/text()}</Precio>
+<PrecioIva>{$b/price+0.18*$b/price/text()}</PrecioIva>
+</libro>
+
+

@@ -1,0 +1,7 @@
+let $min := min(/bookstore/book/price)
+let $max := max(/bookstore/book/price)
+return <resultado>
+<min>{$min}</min>
+ <max>{$max}</max>
+</resultado>
+

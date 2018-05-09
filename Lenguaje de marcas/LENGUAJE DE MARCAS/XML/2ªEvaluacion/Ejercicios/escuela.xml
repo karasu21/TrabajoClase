@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<escuela xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="escuela_esquema.xsd">
+<alumno codigo="1254">
+<nombre>Pepe</nombre>
+<apellido>Suarez</apellido>
+<dni>54879612P</dni>
+<fecha_nacimiento>2012</fecha_nacimiento>
+<curso >2</curso>
+<cuota_pagada>true</cuota_pagada>
+</alumno>
+<alumno codigo="1255">
+<nombre>Carlos</nombre>
+<apellido>Dominguez</apellido>
+<dni>55478964R</dni>
+<fecha_nacimiento>2012</fecha_nacimiento>
+<curso>5</curso>
+<cuota_pagada>false</cuota_pagada>
+</alumno>
+</escuela>

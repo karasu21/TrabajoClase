@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ejemplo de tabla avanzada</title>
+<style>
+h1 {padding-left: 15px;}
+table {padding-left: 15px;
+       border-collapse: collapse;
+       width: 1000px;
+			 }
+td {border: 1px solid black;
+	  padding-left: 15px}
+thead {font-weight: bold;
+       text-align: center;}
+span {font-weight: bold;}
+#columnas { width: 80%;}
+.aliniado {text-align: center;}
+</style>
+</head>
+<body>
+<h1>Resultado de la búsqueda</h1>
+<table>
+<colgroup span="1"></colgroup>
+<colgroup id="columnas" span="1"></colgroup>
+<caption>Resultado de la búsqueda</caption>
+<thead>
+<td>Imagen</td><td>Datos</td>
+</thead>
+<tbody>
+<tr>
+<td class="aliniado"><img src="portatil.jpg" width="220" height="220"/></td><td><a href="">Portátil - 3 GHz - 4GB RAM<br><br>Comprar:</a> <del>2.990€</del> <span>2.599€</span></td>
+</tr>
+<td class="aliniado"><img src="videocamara.png" width="155" height="104"/></td><td><a href="">Videocámara - Alta definición 1080p - 60GB<br><br>Comprar:</a> <del>1.099€</del> <span>999€</span></td>
+</tr>
+<tr>
+<td class="aliniado"><img src="televisor.jpg" width="127" height="82"/></td><td><a href="">Televisor - 46" - Full HD<br><br>Comprar:</a> <del>1.999€</del> <span>1.799€</span></td>
+</tr>
+<tr>
+<td class="aliniado"><img src="movil.png" width="200" height="200"/></td><td><a href="">Móvil - 3G - Wi-Fi - 8GB<br><br>Comprar:</a> <del>399€</del> <span>349€</span></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

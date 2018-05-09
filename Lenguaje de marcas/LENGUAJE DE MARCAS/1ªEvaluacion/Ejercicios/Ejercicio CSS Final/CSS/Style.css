@@ -1,0 +1,93 @@
+	html, body {
+		margin:0px;
+		padding:0;
+		height:100%
+	
+}
+
+	header {
+		
+	background-color:blue;
+	height: 20%;
+	width:100%;
+	
+
+	
+	
+}
+	h1 {
+		position:absolute;
+		top: 2%;
+		left:5%;
+		
+		
+		
+}
+	form {position:relative;
+	top:30%;
+	margin-left:70%;
+	
+		
+		
+}
+	.menu {
+		position:relative;
+		top:63%;
+		height:20%;
+		
+		background-color:#0C004E;
+	}
+	.boton {
+		width:8%;
+		height:100%;
+		display:inline-block;
+		color:white;
+		text-align:center;
+		background-color:#281282;
+		
+		
+			
+}
+
+	#seleccionado{
+		background-color:white;
+		color:orange;
+	}
+	
+	.cuerpo {
+		 width:100%;
+		height:100%;
+}
+	.titulo{
+		color:blue;
+		font-size:25px;
+	}
+	.subtitulo {
+			display:inline-block;
+}
+
+	.perfilycategorias {
+		background:green;
+		float:right;
+		width:30.208%;
+		height:50%;
+		margin-top: 3%;	
+		margin-right:5px;
+		
+}
+	section {
+		background:gray;
+		width:69%;
+		float:left;
+		height:50%;
+		margin-top: 3%;
+		margin-left:5px;
+	
+}
+	article{
+		margin-left:3%;
+		margin-right:3%;
+		margin-top:3%;
+		background-color:#726F6F;
+		
+	}

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<gimnasio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="gimnasio_schema.xsd">
+<socios>
+<socio codigo="_11087723W" >
+<nombre>Pepe</nombre>
+<f_nacimiento>14-03-1990</f_nacimiento>
+<f_alta>14-02-2018</f_alta>
+<telefono_fijo n_tlf="922.115.187"/>
+<direccion cp="28290" calle="Calle Falsa" numero="123" localidad="Villalba"/>
+<actividades_realizada>A1 A3</actividades_realizada>
+</socio>
+</socios>
+<actividades>
+<actividad codigo="A1" nombre="aerobic">
+<descripcion> es un tipo de gimnasia que se realiza al son de la música, en un salón o al aire libre. </descripcion>
+</actividad>
+<actividad codigo="A2" nombre="zumba">
+<descripcion>enfocada por una parte a mantener un cuerpo saludable y por otra a desarrollar,
+ fortalecer y dar flexibilidad al cuerpo mediante movimientos de baile 
+ combinados con una serie de rutinas aeróbicas.</descripcion>
+</actividad>
+<actividad codigo="A3" nombre="spinning">
+<descripcion>El spinning es un ejercicio aeróbico y de piernas principalmente,
+ donde el monitor o profesor puede mediante el cambio de la frecuencia de pedaleo y de la resistencia al movimiento, 
+ realizar todo tipo de intensidades</descripcion>
+</actividad>
+</actividades>
+</gimnasio>

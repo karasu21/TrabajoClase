@@ -1,0 +1,6 @@
+<!ELEMENT padre (sms+)>
+<!ELEMENT sms (telefono, (fecha | hora), contenido)>
+<!ELEMENT telefono (#PCDATA)>
+<!ELEMENT fecha (#PCDATA)>
+<!ELEMENT hora (#PCDATA)>
+<!ELEMENT contenido (#PCDATA)>

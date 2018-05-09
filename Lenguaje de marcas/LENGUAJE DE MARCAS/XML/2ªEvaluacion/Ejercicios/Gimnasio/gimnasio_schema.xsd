@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="gimnasio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name ="socios" type="TipoSocios"/>
+        <xs:element name ="actividades" type="TipoActividades"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+    <xs:complexType name="TipoSocios">
+      <xs:sequence>
+       <xs:element name ="socio" type="TipoSocio" maxOccurs="unbounded"/>
+       </xs:sequence>
+       </xs:complexType>
+    
+    <xs:complexType name="TipoSocio">
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string"/>
+        <xs:element name="f_nacimiento" type="xs:string"/>
+        <xs:element name="f_alta" type="TipoFecha"/>
+          <xs:choice>
+        <xs:element name="telefono_fijo" type="TipoFijo"/>
+        <xs:element name="telefono_movil" type="TipoMovil"/>
+         </xs:choice>
+        <xs:element name="direccion" type="TipoDireccion"/>
+        <xs:element name="actividades_realizada" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="codigo" type="TipoCodigo" use="required"/>
+    </xs:complexType>
+    
+      <xs:simpleType name="TipoFecha">
+        <xs:union>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}[-]{1}[0-1]{1}[0-9]{1}[-]{1}[0-3]{1}[0-9]{1}" />
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}" />
+             </xs:restriction>
+          </xs:simpleType>
+      </xs:union>
+      </xs:simpleType>
+      
+      
+    <xs:simpleType name="TipoCodigo">
+      <xs:restriction base="xs:ID">
+      <xs:pattern value="[_]{1}[0-9]{8}[A-Z]{1}" />
+      </xs:restriction>
+    </xs:simpleType>
+ 
+    <xs:complexType name="TipoFijo">
+    <xs:simpleContent>
+        <xs:extension base="xs:string">
+      <xs:attribute name="n_tlf" type="Fijo" use="required"/>
+      </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+    
+     <xs:complexType name="TipoMovil">
+    <xs:simpleContent>
+        <xs:extension base="xs:string">
+      <xs:attribute name="n_tlf" type="Movil" use="required"/>
+      </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+ 
+  <xs:simpleType name="Fijo">
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[9]{1}[0-9]{2}[.]{1}[0-9]{3}[.]{1}[0-9]{3}" />
+      </xs:restriction>
+    </xs:simpleType>
+    
+    
+     <xs:simpleType name="Movil">
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[6,7]{1}[0-9]{2}[.]{1}[0-9]{3}[.]{1}[0-9]{3}" />
+      </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="TipoDireccion">
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+      <xs:attribute name="calle" type="xs:string" use="required"/>
+      <xs:attribute name="cp" type="CP" use="required"/>
+      <xs:attribute name="localidad" type="xs:string" use="optional"/>
+      <xs:attribute name="numero" type="xs:string" use="required"/>
+      </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+    
+        <xs:simpleType name="CP">
+      <xs:restriction base="xs:integer">
+        <xs:pattern value="[0-5]{1}[0-9]{4}" />
+      </xs:restriction>
+    </xs:simpleType>
+ 
+
+    <xs:complexType name="TipoActividades">
+      <xs:sequence>
+        <xs:element name="actividad" maxOccurs="unbounded" type="TipoActividad"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TipoActividad">
+      <xs:sequence>
+        <xs:element name="descripcion" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="codigo" type="xs:string" use="required"/>
+      <xs:attribute name="nombre" type="xs:string" use="required"/>
+    </xs:complexType>
+
+</xs:schema>

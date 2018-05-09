@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  
+  <xs:element name="empresa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="departamentos" type="TipoDepartamentos" />
+        <xs:element name="empleados" type="TipoEmpleados"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="PK_dep_no">
+    <xs:selector xpath="departamentos/departamento"/>
+    <xs:field xpath="@dep_no"/>
+   </xs:key>
+   <xs:key name="PK_emp_no">
+    <xs:selector xpath="empleados/empleado"/>
+    <xs:field xpath="@emp_no"/>
+   </xs:key>
+   <xs:unique name="FK_deo_no" refer="PK_dep_no">
+   <xs:selector xpath="empleados/empleado"/>
+    <xs:field xpath="@dep_no"/>
+   </xs:unique>
+   <xs:keyref name="FK_emp_director" refer="PK_emp_no">
+   <xs:selector xpath="empleados/empleado"/>
+    <xs:field xpath="director"/>
+   </xs:keyref>
+  </xs:element>
+  
+  
+    <xs:complexType name="TipoDepartamentos">
+      <xs:sequence>
+        <xs:element name="departamento" type="TipoDepartamento" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+
+    
+
+    <xs:complexType name="TipoDepartamento">
+      <xs:sequence>
+        <xs:element name="dnombre" type="xs:string"/>
+        <xs:element name="localidad" type="xs:string"/>
+      </xs:sequence>
+        <xs:attribute name="dep_no" type="xs:string" />
+        <xs:attribute name="emp_no" type="xs:string" />
+    </xs:complexType>
+    
+
+  
+
+    
+
+  
+
+    <xs:complexType name="TipoEmpleados">
+      <xs:sequence>
+        <xs:element name="empleado"  type="TipoEmpleado" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+ 
+  
+  
+    <xs:complexType  name="TipoEmpleado">
+      <xs:sequence>
+        <xs:element name="apellido" type="xs:string"/>
+        <xs:element name="oficio" type="xs:string"/>
+        <xs:element name="director" type="xs:string"/>
+        <xs:element name="fecha_alta" type="xs:date"/>
+        <xs:element name="salario" type="xs:string"/>
+        <xs:element name="comision" type="xs:string"/>
+    
+      </xs:sequence>
+      <xs:attribute name="emp_no" type="xs:string" />
+       <xs:attribute name="dep_no" type="xs:string" />
+    </xs:complexType>
+
+</xs:schema>

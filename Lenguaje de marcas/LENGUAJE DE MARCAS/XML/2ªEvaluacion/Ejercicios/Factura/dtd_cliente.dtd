@@ -1,0 +1,4 @@
+<!ELEMENT datos_cliente (nombre, dir_env, poblacion,  provincia)>
+
+<!ELEMENT dir_env (#PCDATA)>
+<!ATTLIST datos_cliente n_cli ID #REQUIRED>

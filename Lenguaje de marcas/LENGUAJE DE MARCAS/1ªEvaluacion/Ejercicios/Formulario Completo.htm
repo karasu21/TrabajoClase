@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PAGINA CON FORMULARIO COMPLETO</title>
+<style>
+body { background-color : orange;}
+
+table { background-color : orange;
+height: 300px;
+width: 700px;
+border: 2px solid white;
+margin-left:auto; 
+margin-right:auto;
+border-style:outset;
+border-spacing: 10px}
+
+td { background-color: orange;
+border: 2px solid white;
+width: 25%;  
+border-style:inset; }
+
+h1 { text-align: center;}
+
+#id {height: 120px;}
+
+#id2 {height: 120px;
+text-align: center;}
+
+#id3 {height: 120px;
+text-align: center;
+vertical-align:top;}
+
+div {text-align: center;}
+
+</style>
+</head>
+<body>
+<h1>FORMULARIO COMPLETO</h1>
+<form>
+<table>
+<tr>
+<td>Texto:
+</td>
+<td>
+<input type="text" name="Texto">
+</td>
+<td>Password:
+</td>
+<td>
+<input type="text" name="Password">
+</td>
+</tr>
+<td id="id">TextArea:
+</td>
+<td colspan=3 id="id"> <textarea rows="7" cols="62" name="TextArea"></textarea>
+</td>
+</tr>
+<td text-align=center id="id2">Campo Check 1:<input type="checkbox" name="cb1"><br>
+Campo Check 2:<input type="checkbox" name="cb2"><br>
+Campo Check 3:<input type="checkbox" name="cb3"><br>
+</td>
+<td text-align=center id="id2">Radio 1:<input type="radio" name="r1" value = "1"><br>
+Radio2:<input type="radio" name="r1" value = "2"><br>
+</td>
+<td id="id3">Selección: <select name="select">
+<option value="1" selected>primera</option>
+<option value="2">segunda</option>
+<option value="3">tercera</option>
+</select>
+</td>
+<td id="id3"}>Selección Múltiple:<br><select name="select2" size=3 multiple>
+<option value="1">primera</option>
+<option value="2">segunda</option>
+<option value="3">tercera</option>
+</select>
+</td>
+</tr>
+</table>
+<br>
+<div>
+<button onclick="alert(’Acción JavaScript’)">Botón</button>
+<input type="submit" value="Enviar">
+<input type="reset" value="Iniciar">
+</div>
+</form>
+</body>
+</html>
