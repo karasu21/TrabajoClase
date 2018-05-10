@@ -1,0 +1,119 @@
+<!DOCTYPE html">
+<html>
+<head>
+<meta charset="UTF-8">
+  <title>Examen HTML y CSS</title>
+  <link rel="stylesheet" type="text/css" href="maquetacion.css"/>
+</head>
+<body>
+<!-- CONTENEDOR PRINCIPAL -->
+<div id="contenedor">
+
+<!-- CABECERA -->
+
+<div id="cabecera">
+<h1>Web maquetada con CSS</h1>
+<ul class="ul">
+
+<li class="menuEnLinea"><a href="miportal.html">Mis módulos</a></li>
+<li class="menuEnLinea"><a href="comentarios.html">Comentarios</a></li>
+<li class="menuEnLinea"><a href="maquetacion.css">Ver código CSS</a></li>
+
+</ul>
+
+</div>
+
+<!-- CIERRE CABECERA -->
+
+<!-- CUERPO -->
+
+<div id="cuerpo">
+
+<!-- MENU -->
+
+<div id="menu">
+<h2>Mis favoritos</h2>
+<p>
+<ul class="menuizq">
+<li><a href="www.google.es">www.google.es</a></li>
+<li><a href="www.facebook.com">www.facebook.com</a></li>
+<li><a href="www.elpais.com">www.elpais.com</a></li>
+<li><a href="www.youtube.com">www.youtube.com</a></li>
+<li><a href="www.yahoo.com">www.yahoo.com</a></li>
+<li><a href="www.bing.com">www.bing.com</a></li>
+</ul>
+
+</p>
+
+<hr>
+
+<form action="">
+<span>Accede a tu cuenta <input type="text" size="15"></span><br>
+<input type="submit" value="Enviar">
+</form>
+
+<!-- CIERRE MENU -->
+</div>
+
+<!-- CONTENIDO -->
+
+<div id="contenido">
+<h2 class="misModulos">Mis módulos</h2>
+<p>
+<table class="tabla">
+
+<tr class="tablaColor">
+<td>Módulos</td>
+<td>Horas semanales</td>
+<td>Libro Texto</td>
+<td>Nota Final</td>
+</tr>
+
+<tr>
+<td>Bases de datos</td>
+<td>6</td>
+<td>NO</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>Lenguaje de marcas</td>
+<td>4</td>
+<td>NO</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>Redes</td>
+<td>9</td>
+<td>SI</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>Sistemas Operativos</td>
+<td>6</td>
+<td>NO</td>
+<td>5</td>
+</tr>
+
+</table>
+
+
+</p>
+
+<!-- CIERRE CONTENIDO -->
+</div>
+
+<!-- CIERRE CUERPO -->
+
+</div>
+<div id="pie">
+<p class="pie">I.E.S Lázaro Cardenas</p>
+</div>
+
+<!-- CIERRE CONTENEDOR PRINCIPAL -->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+declare
+
+//se declaran dos variables de tipo phone_number (phone_origen y phone_destino)
+
+//se declaran dos indices para recorrer los varrays
+
+begin
+
+//se insertan en company3 la nueva compañia 'Xerox' con dos telefonos
+
+//mediante select se sacan todos los telefonos de 'IBM' y se vuelcan en phone_origen
+
+//mediante select se sacan todos os telefonos de 'Xerox' y se vuelcan en phone_destino
+
+//mediante un for movemos indice1 y recorremos phone_origen
+
+	//Se hace un EXTEND en phone_destino
+	//se mueve el indice 2
+	//se vuelca el contenido de origen en destino mediante asignaciion directa :=
+//fin del bucle for
+
+//Se hace un update en company3 y sustituir la columna phone_number por el contenido de destino_phone
+
+end

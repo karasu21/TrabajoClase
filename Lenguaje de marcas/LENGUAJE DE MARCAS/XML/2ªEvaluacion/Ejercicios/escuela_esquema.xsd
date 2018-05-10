@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="escuela">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="alumno" minOccurs="1" maxOccurs="200" type="TipoAlumno"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+<xs:complexType name="TipoAlumno">
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string"/>
+        <xs:element name="apellido" type="xs:string"/>
+        <xs:element name="dni" type="xs:string"/>
+        <xs:element name="fecha_nacimiento" type="xs:gYear"/>
+        <xs:element name="curso" type="TipoCurso"/>
+        <xs:element name="cuota_pagada" type="xs:boolean"/>
+      </xs:sequence>
+      <xs:attribute name="codigo" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:simpleType name="TipoCurso">
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="1"/>
+        <xs:enumeration value="2"/>
+        <xs:enumeration value="3"/>
+        <xs:enumeration value="4"/>
+        <xs:enumeration value="5"/>
+        <xs:enumeration value="6"/>
+      </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

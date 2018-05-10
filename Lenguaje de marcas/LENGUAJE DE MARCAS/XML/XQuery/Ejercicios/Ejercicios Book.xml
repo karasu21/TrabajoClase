@@ -1,0 +1,85 @@
+---1---
+
+let $min := min(/bookstore/book/price)
+let $max := max(/bookstore/book/price)
+return <resultado>
+<min>{$min}</min>
+ <max>{$max}</max>
+</resultado>
+
+---2---
+
+for $b in doc ("books.xml")/bookstore/book
+return <libro>
+<Titulo>{$b/title/text()}</Titulo>
+<Precio>{$b/price/text()}</Precio>
+<PrecioIva>{$b/price+0.18*$b/price/text()}</PrecioIva>
+</libro>
+
+
+---3---
+let $c:= /bookstore/book/price
+return <total>
+{$c}
+</total>
+
+---4---
+
+for $b in doc ("books.xml")/bookstore/book
+return <libro>
+<Titulo>
+{$b/title/text()}
+</Titulo>
+<N_Autores>
+{$b/count(author)}
+</N_Autores>
+</libro>
+
+---5---
+let $b :=/bookstore/book/price
+let $c := sum(/bookstore/book/price)
+return <libro>
+{$b}
+<Total>{$c}</Total>
+</libro>
+
+---6---
+for $b in doc ("books.xml")/bookstore/book
+where every $a in $b/year
+satisfies ends-with($b/year,"3")
+return <libro>
+{$b}
+</libro>
+
+---7---
+
+for $b in doc ("books.xml")/bookstore/book
+where some $a in $b/@category
+satisfies starts-with($b//@category,"C")
+return <libro>
+{$b}
+</libro>
+
+---8---
+
+for $b in doc ("books.xml")/bookstore/book
+where some  $a in $b/title satisfies
+contains($b/title,"X") or contains ($b/title,"x")
+return <libro>
+{$b}
+</libro>
+
+---9---
+
+for $b in doc ("books.xml")/bookstore/book
+return 
+<titulo>
+{$b/title/text()} ({string-length($b/title/text())})</titulo>
+
+---10---
+
+for $b in distinct-values (doc("books.xml")/bookstore/book/author) order by string-length($b)
+return 
+<titulo>{$b} ({string-length($b)})</titulo>
+
+---11---

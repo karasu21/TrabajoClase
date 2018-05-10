@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ejemplo de tabla compleja</title>
+<style>
+table { text-align: center;
+border: 1px solid black;
+border-collapse: collapse;
+width: 700px;
+height: 600px;}
+td { border: 1px solid black;}
+.filauno {height: 20%;
+ 			  font-weight: bold;
+				padding-top: 50px;}
+.filados {height: 20%;}
+.filatres {height: 20%;}
+.filacuatro {height: 20%;}
+
+colgroup {width: 20%; 
+				 	font-weight: bold;}
+</style>
+</head>
+<body>
+<h3>Comparativa de reproductores MP3</h3>
+<table>
+<caption>Tabla comparativa de las caracteristica técnicas de los reproductores MP3 </caption>
+<colgroup span="1"></colgroup>
+<tbody class="filauno">
+<tr>
+<td></td>
+<td colspan="3"><img src="capturamini.PNG"><br><h2>MP3 mini</h2></td>
+<td colspan="2"><img src="capturagrande.PNG"><br><h2>MP3 grande</h2></td>
+</tr>
+</tbody>
+<tbody class="filados">
+<tr>
+<td>Capacidad de almacenamiento</td>
+<td>4GB<br>(1.000 canciones)</td>
+<td>8GB<br>(2.000 canciones)</td>
+<td>16GB<br>(4.000 canciones)</td>
+<td>30GB<br>(7.500 canciones)</td>
+<td>80GB<br>(20.000 canciones)</td>
+</tr>
+</tbody>
+<tbody class="filatres">
+<tr>
+<td>Colores</td>
+<td><img src="blanco.PNG"></td>
+<td><img src="colores.PNG"></td>
+<td><img src="negro.PNG"></td>
+<td colspan="2"><img src="blanconegro.PNG"></td>
+</tr>
+</tbody>
+<tbody class="filacuatro">
+<tr>
+<td>Pantalla</td>
+<td colspan="3">LCD de 3 cm (diagonal) con retroiluminacion</td>
+<td colspan="2">LCD de 6 cm (diagonal) con retroiluminacion</td>
+</tr>
+</tbody>
+<tbody class="filacinco">
+<tr>
+<td rowspan="2">Tiempo de carga</td>
+<td rowspan="2" colspan="3">Unas 3 horas</td>
+<td colspan="2" height="8%">Unas 4 horas</td>
+</tr>
+<tr>
+<td colspan="2" height="12%" >Unas 2 horas para alcanzar el 80% de la capacidad</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

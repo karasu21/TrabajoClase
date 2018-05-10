@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE padre SYSTEM "sms.dtd">
+<padre>
+<sms>
+<telefono>
+654321987
+</telefono>
+<fecha>
+17/01/2018
+</fecha>
+<contenido>
+Hola coca cola
+</contenido>
+</sms>
+<sms>
+<telefono>
+654321987
+</telefono>
+<hora>
+12:11
+</hora>
+<contenido>
+Hola coca cola
+</contenido>
+</sms>
+</padre>

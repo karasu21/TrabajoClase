@@ -1,0 +1,5 @@
+for $b at $i in doc ("books.xml")/bookstore/book
+return
+ <libro>
+ {$i}.{$b/title/text()}
+ </libro>

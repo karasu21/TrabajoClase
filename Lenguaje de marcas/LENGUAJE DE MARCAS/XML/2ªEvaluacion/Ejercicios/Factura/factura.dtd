@@ -1,0 +1,42 @@
+<!ENTITY % cliente SYSTEM "dtd_cliente.dtd">
+
+<!ELEMENT factura (datos_empresa, datos_cliente, datos_factura)>
+
+<!ELEMENT datos_empresa (nombre, dir, poblacion,  provincia, cif, telefono?, fax?)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT dir (#PCDATA)>
+<!ELEMENT poblacion (#PCDATA)>
+<!ELEMENT provincia (#PCDATA)>
+<!ELEMENT cif (#PCDATA)>
+<!ELEMENT telefono EMPTY>
+<!ELEMENT fax EMPTY>
+
+%cliente;
+
+<!ELEMENT datos_factura (fecha,f_pago, linea+,  base, iva, cuota_iva, total )>
+<!ELEMENT fecha (#PCDATA)>
+<!ELEMENT f_pago (#PCDATA)>
+<!ELEMENT linea (ref,desc,cant,precio,iva,importe)>
+<!ELEMENT ref (#PCDATA)>
+<!ELEMENT desc (#PCDATA)>
+<!ELEMENT cant (#PCDATA)>
+<!ELEMENT precio (#PCDATA)>
+<!ELEMENT iva (#PCDATA)>
+<!ELEMENT importe (#PCDATA)>
+<!ELEMENT base (#PCDATA)>
+<!ELEMENT cuota_iva (#PCDATA)>
+<!ELEMENT total (#PCDATA)>
+
+<!ATTLIST factura n_fac ID #REQUIRED>
+<!ATTLIST datos_factura n_ped ID  #REQUIRED>
+<!ATTLIST poblacion cod_postal (28043 | 28040)  #REQUIRED>
+<!ATTLIST telefono n_telefono ( 91.777.66.88) #IMPLIED>
+<!ATTLIST fax n_fax ( 91.777.66.99) #IMPLIED>
+<!ATTLIST precio moneda CDATA  #REQUIRED>
+<!ATTLIST importe moneda CDATA  #REQUIRED>
+<!ATTLIST total moneda CDATA  #REQUIRED>
+
+
+
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="NOTAS_tabla_XSLT.xsl"?>
+<notas>
+   <alumno convocatoria="Ext">
+      <nombre>Carlos</nombre>
+      <apellidos>Carcedo de Pero Sanz</apellidos>
+      <num-matricula>j0143</num-matricula>
+      <nota-teoria>8.0</nota-teoria>
+      <nota-practica>9.0</nota-practica>
+      <nota-final>8.5</nota-final>
+   </alumno>
+   <alumno convocatoria="Jun">
+      <nombre>Marcos</nombre>
+      <apellidos>Gallardo Muñoz</apellidos>
+      <num-matricula>j0192</num-matricula>
+      <nota-teoria>7.8</nota-teoria>
+      <nota-practica>9.2</nota-practica>
+      <nota-final>8.5</nota-final>
+   </alumno>
+   <alumno convocatoria="Jun">
+      <nombre>Andrés</nombre>
+      <apellidos>Canovas Coutiño</apellidos>
+      <num-matricula>j0215</num-matricula>
+      <nota-teoria>8.5</nota-teoria>
+      <nota-practica>8.5</nota-practica>
+      <nota-final>8.5</nota-final>
+   </alumno>
+</notas>

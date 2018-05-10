@@ -1,0 +1,285 @@
+
+
+	html {
+   margin: 0px;
+   height: 100%;
+   min-width:1100px;
+}
+
+	body {
+   margin: 0px;
+   min-height: 100%;
+   min-width:1100px;
+}
+
+	header {
+		background-image: url("../imagenes/cabecera.jpg"); 
+		
+		background-size: 100px 140px;
+		
+		height: 180px;
+		
+		width:100%;
+	
+
+	
+	
+}
+	.contenedorcabecera{
+	width:1100px;
+	height:140px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+	.imagen-cabecera{margin-top:0px;
+	float:left;
+	position:relative;
+	top:15px;
+	left:-45px;
+	
+	
+	}
+	
+
+	
+	
+	
+	form {position:relative;
+		top:60px;
+		left:10px;
+		
+	
+		
+		
+}
+	.buscar{position:relative;
+	top:5px;
+	}
+	
+	#busqueda{width: 260px;}
+
+	.contendormenu1{
+		background-image: url("../imagenes/color-contenedor1.jpg");
+		position:relative;
+		top:-15px;
+		heiht:40px;
+		width:100%;
+		min-width:1100px;
+		
+		
+	}
+	.menu1 {
+		position:relative;
+		top:2px;
+		bottom:2px;
+		height:36px;
+		min-width:1100px;
+		width:1100px;
+		max-width:1100px;
+		padding: 0;
+		margin-left:auto;
+		margin-right:auto;
+		border-radius: 5px;
+		background-image: url("../imagenes/color-menu1.jpg");
+	}
+	.boton1 {
+		background-image: url("../imagenes/color-boton.jpg");
+		border-radius: 2px 2px 0px 0px;
+		width:120px;
+		height:100%;
+		display:inline-block;
+		text-align:center;
+		min-height:100%;
+		min-width:120px;
+		
+		
+		
+}
+	.enlacemenu1 {
+		text-decoration:none;
+		color:white;
+		position:relative;
+		top:8.5px;
+
+}
+	#seleccionado1{
+		
+		 
+		
+}
+	.contendormenu2{
+		background-image: url("../imagenes/color-contenedor2.jpg");
+		position:relative;
+		top:-33px;
+		height:29px;
+		width:100%;
+		min-width:1100px;
+		
+		
+	}
+	.menu2 {
+		border-radius:  0px 5px 5px 5px;
+		height:25px;
+		width:1100px;
+		padding: 0;
+		margin-left:auto;
+		margin-right:auto;
+		min-width:1100px;
+		max-width:1100px;
+		
+	}
+	.boton2 {
+		border-radius:  0px 0px 5px 5px;
+		width:120px;
+		height:100%;
+		display:inline-block;
+		text-align:center;
+	
+		
+		
+		
+			
+}
+	.enlacemenu2 {
+		text-decoration:none;
+		color:white;
+		position:relative;
+		top:3px;
+
+}
+	#seleccionado2{
+		color:black;
+		font-weight:bold;
+		 
+		
+}
+	
+	.cuerpo {
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:24px;
+		width:1100px;
+		height:100%;
+		background-color: grey;
+		
+}
+	section {
+		
+		background-color:#F8F8F8;
+		margin-left:auto;
+		margin-right:auto;
+		position:relative;
+		top:0.2%;
+		bottom:0.2%;
+		height:100%;
+		width:99.5%;
+		
+		
+		
+	
+}
+
+.section-header{
+	color: #777777;
+	font-weight: 100;
+	font-family: Arial;
+	padding-top:2.5%;
+	padding-left:15px;
+	
+}
+
+	article{
+		margin:0;
+		margin-left:auto;
+		margin-right:auto;
+		background-color:white;
+		width:1074px;
+		height:230px;
+		
+		
+	}
+	.contenido-articulo-portada{
+	 width:1054px;
+	 height:130px;
+	 margin-left:auto;
+	 margin-right:auto;
+	 
+		
+	}
+	
+	.texto-portada{
+		width:875px;
+		margin-left:180px;
+		text-align:left;
+		font-size:15px;
+		font-family:Arial;
+	}
+	.contenedor-imagen-miniatura{
+		float:left;
+		width:204px;
+		height:130px;
+		
+	}
+	.imagen-miniatura{
+		width:100%;
+		height:100%;
+		object-fit: contain;
+		border-radius:  3px;
+		
+	}
+	.titulo{
+		padding-left:15px;
+		padding-top:15px;
+		background-color:white;
+		font-size:25px;
+		height:20%;
+		
+	}
+	.enlace-titulo{
+		text-decoration:underline;
+		color:black;
+	}
+	.enlace-titulo:hover{
+		color:#366696;
+	}
+	.subtitulo {
+			margin-left:15px;
+			margin-top:-5px;
+			font-size: 13px;
+			color:#366696;
+			font-weight:700;
+			font-family: Arial;
+}
+	.mantenimiento{
+		position:relative;
+		top:40px;
+		text-align:center;
+		font-size:30px;
+		font-family:Arial;
+		
+	}
+
+	
+	footer {
+		height:100px;
+		width:1100px;
+		margin-left:auto;
+		margin-right:auto;
+		background-color:#366696;
+		border-top: 3px solid black;
+		
+	}
+	.virual-zone-footer{
+		float:left;
+		position:relative;
+		top:11px;
+	}
+	.texto-footer{
+		position:relative;
+		top:51px;
+		color: black;
+		font-family: Arial;
+		
+	}

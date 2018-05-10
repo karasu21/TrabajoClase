@@ -1,0 +1,56 @@
+---1---
+CREATE PROCEDURE procalm_4 (IN n_empleados INT)
+BEGIN
+	DECLARE v_salario INT;
+	DECLARE v_id INT;
+	DECLARE v_nombre VARCHAR(18);
+	DECLARE cnt INT DEFAULT 0;
+	DECLARE  v_ultima_fila INT DEFAULT 0;
+	DECLARE s_empleados CURSOR FOR
+	SELECT salario, numem, nomem
+		FROM empleados
+	ORDER BY  salario DESC;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET cnt=n_empleados;
+	OPEN s_empleados;
+	bucle_emp:REPEAT
+		FETCH s_empleados INTO  v_salario, v_id, v_nombre;
+		IF cnt=n_empleados THEN
+			LEAVE bucle_emp;
+		END IF;
+		INSERT INTO temp(COL1, COL2, MSG) VALUES (v_salario,v_id,v_nombre);
+		SET cnt=cnt+1;
+		UNTIL cnt=n_empleados
+		END REPEAT bucle_emp;
+	CLOSE s_empleados;
+END
+
+--2--
+CREATE PROCEDURE procalm_5()
+BEGIN
+	DECLARE v_cant INT(5);
+	DECLARE v_alm CHAR(2);
+	DECLARE v_id CHAR(2);
+	DECLARE v_ultima_fila INT;
+	DECLARE c_aumento CURSOR FOR
+	SELECT id_art,id_alm, cant
+		FROM stock  
+	WHERE id_art = "P1"  OR id_art = "P3"  OR id_art = "P5";
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_ultima_fila=1;
+	OPEN c_aumento;
+	bucle_aumento:LOOP
+		FETCH c_aumento INTO v_id, v_alm, v_cant;
+		IF v_ultima_fila=1 THEN
+			LEAVE bucle_aumento;
+		END IF;
+		IF v_id="P1" THEN
+			SET v_cant=v_cant*1.20;
+		ELSEIF v_id="P3" THEN
+			SET v_cant=v_cant*1.15;
+		ELSEIF v_id="P5" THEN
+			SET v_cant=v_cant*1.05;
+		END IF;
+	UPDATE stock SET cant = v_cant WHERE id_art = v_id AND id_alm = v_alm;
+	END LOOP bucle_aumento;
+CLOSE c_aumento;
+END
+

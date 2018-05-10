@@ -1,0 +1,44 @@
+Ejemplo subconsulta clausula FROM
+==================================
+Listado con los empleados que ganan mas de la media de SU departamento
+
+
+SELECT dep_no, round(avg(salario),0) AS sal_medio
+FROM EMPLEADOS
+GROUP BY dep_no;
+
+SELECT apellido, salario, sal_medio
+FROM (SELECT dep_no, round(avg(salario),0)as sal_medio
+FROM EMPLEADOS 
+GROUP BY dep_no) as sm join EMPLEADOS e
+on e.dep_no = sm.dep_no
+WHERE e.salario > sm.sal_medio;
+
+
++----------+---------+-----------+
+| apellido | salario | sal_medio |
++----------+---------+-----------+
+| MARTINEZ | 2450.00 |      2400 |
+| REY      | 6000.00 |      2400 |
+| GIL      | 3350.00 |      1912 |
+| GARRIDO  | 3850.00 |      2138 |
++----------+---------+-----------+
+
+
+Ejemplo subconsulta en la clausula SELECT
+=========================================
+Lista el nombre de los departamentos con su numero de empleados
+
+SELECT dnombre, (SELECT COUNT(*)
+FROM EMPLEADOS
+WHERE dep_no = d.dep_no) as num_emp
+FROM DEPARTAMENTOS d;
+
++---------------+---------+
+| dnombre       | num_emp |
++---------------+---------+
+| CONTABILIDAD  |       5 |
+| INVESTIGACION |       4 |
+| VENTAS        |       4 |
+| PRODUCCION    |       0 |
++---------------+---------+
