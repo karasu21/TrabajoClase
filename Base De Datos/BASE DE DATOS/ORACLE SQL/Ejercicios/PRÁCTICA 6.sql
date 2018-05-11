@@ -9,12 +9,14 @@ MEMBER PROCEDURE ingresar (cantidad IN REAL),
 MEMBER PROCEDURE retirar (cantidad IN REAL),
 MEMBER FUNCTION saldo_actual RETURN REAL
 );
+/
 
 CREATE SEQUENCE numeroCuenta
 INCREMENT BY 100
 START WITH 100;
+/
 
-CREATE TABLE cuentas OF cuenta_bancaria;
+CREATE TABLE cuentas OF cuenta_bancaria;/
 
 ---1---
 
@@ -69,6 +71,7 @@ RETURN saldo;
 END; 
 
 END;
+/
 
 ---2---
 
@@ -99,19 +102,38 @@ END;
 /
 
 ---4---
-DECLARE
 
+DECLARE
+cuenta cuenta_bancaria:=cuenta_bancaria();
 restante Real;
-v_num_cuenta INTEGER;
-Cursor c_cuenta is SELECT c.num_cuenta FROM cuentas c;
+Cursor c_cuenta is SELECT c.num_cuenta, c.saldo, c.estado FROM cuentas c;
 BEGIN
 OPEN c_cuenta;
 LOOP
-FETCH c_cuenta INTO v_num_cuenta;
+FETCH c_cuenta INTO cuenta.num_cuenta,cuenta.saldo,cuenta.estado;
 EXIT WHEN c_cuenta%NOTFOUND;
-IF (MOD(v_num_cuenta,10)=0) THEN
-SELECT c.cerrar(restante) FROM cuentas c;
+IF (MOD(cuenta.num_cuenta,10)=0) THEN
+cuenta.cerrar(restante);
+UPDATE cuentas c set c.estado=cuenta.estado;
 END IF;
+END LOOP;
+CLOSE c_cuenta;
+END;
+/
+
+---5---
+
+
+DECLARE
+cuenta cuenta_bancaria:=cuenta_bancaria();
+Cursor c_cuenta is SELECT c.num_cuenta, c.saldo, c.estado FROM cuentas c;
+BEGIN
+OPEN c_cuenta;
+LOOP
+FETCH c_cuenta INTO cuenta.num_cuenta,cuenta.saldo,cuenta.estado;
+EXIT WHEN c_cuenta%NOTFOUND;
+cuenta.ingresar(50);
+UPDATE cuentas c set c.saldo=cuenta.saldo;
 END LOOP;
 CLOSE c_cuenta;
 END;
