@@ -1,38 +1,3 @@
-<<<<<<< HEAD
-/Menu/
-/algoritmosJava/
-/baseDeDatos/
-/buscarPalabras/
-/corregidosProfesor/
-/diccionario/
-/excepciones/
-/figurasGeometricas/
-/herenciaEj/
-/herenciaPruebasInterface/
-/manejoFicheros/
-/metodosString/
-/modelizarConObjetos/
-/p1/
-/p2/
-/profesorBaseDeDatos/
-=======
-/manejoFicheros/
-/metodosString/
-/modelizarConObjetos/
-/p1/
-/p2/
-/profesorBaseDeDatos/
-/profesorRutasFile/
->>>>>>> branch 'master' of https://github.com/karasu21/TrabajoClase.git
-/pruebasEntrada/
-/pruebasMatches/
-/pruebasObjetos/
-/rutasArchivosPruebas/
-/rutasFile/
-/time/
-/profesorRutasFiles/
-/profesorRutasFile/
-/tuberias/
 /Menu/
 /algoritmosJava/
 /baseDeDatos/
@@ -55,4 +20,6 @@
 /pruebasObjetos/
 /rutasArchivosPruebas/
 /rutasFile/
-/colecciones/
+/profesorFicheros/
+/GUI/
+/profesorGUI/
