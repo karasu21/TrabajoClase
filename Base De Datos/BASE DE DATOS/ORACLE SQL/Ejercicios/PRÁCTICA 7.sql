@@ -12,6 +12,21 @@ MEMBER PROCEDURE imprimir
 );
 /
 
+CREATE FUNCTION mcd (x INTEGER, y INTEGER) RETURN INTEGER AS
+-- encuantra el máximo comun divisor de x e y
+resp INTEGER;
+BEGIN
+IF (y <= x) AND (x MOD y = 0) THEN
+resp := y;
+ELSIF x < y THEN
+resp := mcd(y, x); -- llamadada recursiva
+ELSE
+resp := mcd(y, x MOD y); -- llamadada recursiva
+END IF;
+RETURN resp;
+END;
+/
+
 CREATE OR REPLACE TYPE BODY Racional AS
 MAP MEMBER FUNCTION valor RETURN REAL IS
 BEGIN
@@ -100,10 +115,43 @@ END;
 END;
 /
 
-DECLARE
-racional1 Racional:= Racional(4,2);
-BEGIN
-racional1.reciproco();
-racional1.imprimir();
-END;
+
+declare
+a Racional := Racional(15,6);
+b Racional := Racional(5,3);
+c Racional := Racional(12,8);
+r Racional := Racional(9,6);
+begin
+  DBMS_OUTPUT.PUT_LINE('--------RACIONALES--------');
+  DBMS_OUTPUT.PUT_LINE('a: '|| a.num ||'/'|| a.den);
+  DBMS_OUTPUT.PUT_LINE('b: '|| b.num ||'/'|| b.den);
+  DBMS_OUTPUT.PUT_LINE('c: '|| c.num ||'/'|| c.den);
+  DBMS_OUTPUT.PUT_LINE('-------------------------');
+ DBMS_OUTPUT.PUT_LINE('---Numero racional (a)---');
+ a.imprimir();
+ DBMS_OUTPUT.PUT_LINE('---Mayor de dos números racionales(a y b)---');
+ IF a>b THEN
+  DBMS_OUTPUT.PUT_LINE('a: '||a.num ||'/'|| a.den);
+  ELSE
+  DBMS_OUTPUT.PUT_LINE('b: '|| b.num ||'/'|| b.den);
+ END IF;
+ DBMS_OUTPUT.PUT_LINE('---Numero racional simplificado (c)---');
+c.simplificar();
+DBMS_OUTPUT.PUT_LINE('c: '|| c.num ||'/'|| c.den);
+DBMS_OUTPUT.PUT_LINE('---Numero racional reciproco de c simplificado---');
+r:=c.reciproco();
+DBMS_OUTPUT.PUT_LINE('r: '|| r.num ||'/'|| r.den);
+DBMS_OUTPUT.PUT_LINE('---a+b---');
+c:=a.suma(b);
+DBMS_OUTPUT.PUT_LINE('a+b='|| c.num ||'/'|| c.den);
+DBMS_OUTPUT.PUT_LINE('---a-b---');
+c:=a.resta(b);
+DBMS_OUTPUT.PUT_LINE('a-b='|| c.num ||'/'|| c.den);
+DBMS_OUTPUT.PUT_LINE('---a/b---');
+c:=a.division(b);
+DBMS_OUTPUT.PUT_LINE('a/b='|| c.num ||'/'|| c.den);
+DBMS_OUTPUT.PUT_LINE('---a*b---');
+c:=a.multiplicacion(b);
+DBMS_OUTPUT.PUT_LINE('a*b='|| c.num ||'/'|| c.den);
+end;
 /
