@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import colecciones.Parejas;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -15,18 +18,22 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Window.Type;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class EjemploGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextArea textArea;
+	private JTextArea textAreaOrdenada;
 
 	/**
 	 * Launch the application.
@@ -75,31 +82,66 @@ public class EjemploGUI extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		JButton btnNewButton_1 = new JButton("Obtener palabras");
+		JButton btnNewButton_1 = new JButton("Palabras Desordenadas");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Map<String, Integer> mapa = estadisticaPalabras(new File(textField.getText()), true);
-					String texto="";
-					for(String pal:mapa.keySet()) {
-						texto+=pal+" "+mapa.get(pal)+"\n";
+					String texto = "";
+					for (String pal : mapa.keySet()) {
+						texto += pal + " " + mapa.get(pal) + "\n";
 					}
 					textArea.setText(texto);
-					
-					
-					
+
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnNewButton_1.setBounds(10, 75, 143, 23);
+		btnNewButton_1.setBounds(10, 65, 167, 23);
 		contentPane.add(btnNewButton_1);
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 101, 176, 108);
+		contentPane.add(scrollPane);
+
 		textArea = new JTextArea();
-		textArea.setBounds(176, 75, 249, 140);
-		contentPane.add(textArea);
+		scrollPane.setViewportView(textArea);
+
+		JButton btnNewButton_2 = new JButton("Palabras Ordenadas");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Map<String, Integer> mapa = estadisticaPalabras(new File(textField.getText()), true);
+					Parejas palabras;
+					ArrayList<Parejas> cadena = new ArrayList<Parejas>();
+					for (String pal : mapa.keySet()) {
+						palabras = new Parejas(pal, (Integer) mapa.get(pal));
+						cadena.add(palabras);
+					}
+					Collections.sort(cadena);
+					String texto = "";
+					for (Parejas pareja : cadena) {
+						texto += pareja.getPalabra() + " " + pareja.getRepeticiones() + "\n";
+					}
+					textAreaOrdenada.setText(texto);
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2.setBounds(227, 64, 167, 25);
+		contentPane.add(btnNewButton_2);
+
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(229, 101, 196, 108);
+		contentPane.add(scrollPane_1);
+
+		textAreaOrdenada = new JTextArea();
+		scrollPane_1.setViewportView(textAreaOrdenada);
 	}
 
 	protected void lanzarFileChooser() {
