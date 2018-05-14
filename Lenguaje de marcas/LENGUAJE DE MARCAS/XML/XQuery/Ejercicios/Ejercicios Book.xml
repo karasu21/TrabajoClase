@@ -83,3 +83,36 @@ return
 <titulo>{$b} ({string-length($b)})</titulo>
 
 ---11---
+
+
+file:write("E:\book_xquery.html",
+<html>
+<head>
+</head>
+<body>
+<table border="1">
+<tr>
+<td>
+Titulo
+</td>
+<td>
+Categoria
+</td>
+</tr>
+{
+let $c := bookstore/book
+for $b in $c
+return 
+<tr>
+<td>
+{$b/title/text()}
+</td>
+<td>
+{$b/@category/string()}
+</td>
+</tr>
+}
+</table>
+</body>
+</html>
+)

@@ -1,0 +1,41 @@
+---1---
+for $b in doc("Bailes.xml")/Bailes/baile
+return <nombre_baile>
+{$b/nombre/text()}
+</nombre_baile>
+
+---2---
+for $b in doc("Bailes.xml")/Bailes/baile
+return 
+<Bailes>
+<nombre>
+{$b/nombre/text()} ({$b/plazas/text()})
+</nombre>
+</Bailes>
+
+---3---
+
+for $b in doc("Bailes.xml")/Bailes/baile
+where $b/precio > 30 and $b/precio/@moneda="euro"
+return 
+{$b/nombre/text()}
+
+---4---
+
+for $b in doc("Bailes.xml")/Bailes/baile
+where substring($b/comienzo, 3, 1) = "1"
+return
+$b/nombre
+
+---5----
+
+for $b in distinct-values (doc("Bailes.xml")/Bailes/baile)
+return 
+<profesor>
+<nombre>
+{$b/profesor/text()} 
+</nombre>
+<sala>
+{$b/sala/text()} 
+</sala>
+</profesor>
