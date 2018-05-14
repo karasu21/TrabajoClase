@@ -1,0 +1,11 @@
+package Ej2;
+
+public class Prueba {
+
+	public static void main(String[] args) {
+		double num=23.12;
+		String entero=String.valueOf(num);
+		System.out.println(entero);
+	}
+
+}

@@ -1,0 +1,36 @@
+package Ej1;
+
+public class Trabajador {
+	private String nombre;
+	private int edad;
+	private int categoria;
+	private int antigüedad;
+	public static final int CAT_EMPLEADO = 0;
+	public static final int CAT_ENCARGADO = 1;
+	public static final int CAT_DIRECTIVO = 2;
+	public static final int ANT_NOVATO = 0;
+	public static final int ANT_MADURO = 1;
+	public static final int ANT_EXPERTO = 2;
+
+	public Trabajador(String nombre, int edad, int categoria, int antigüedad) {
+		this.nombre = nombre;
+		this.edad = edad;
+		if (categoria == 0 || categoria == 1 || categoria == 2) {
+			this.categoria = categoria;
+		} else {
+			throw new IllegalArgumentException("Categoria no concuerda con las admitidas");
+		}
+		if (antigüedad == 0 || antigüedad == 1 || antigüedad == 2) {
+			this.antigüedad = antigüedad;
+		} else {
+			throw new IllegalArgumentException("Antiguedad no concuerda con las admitidas");
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Trabajador [nombre=" + nombre + ", edad=" + edad + ", categoria=" + categoria + ", antigüedad="
+				+ antigüedad + "]";
+	}
+
+}

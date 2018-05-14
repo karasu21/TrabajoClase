@@ -1,0 +1,40 @@
+package Ej5;
+
+public class Cifrado {
+	
+	String palabra;
+	
+	public Cifrado(String palabra) {
+		this.palabra = palabra;
+	}
+
+	@Override
+	public String toString() {
+		return "Cifrado [palabra=" + palabra + "]";
+	}
+
+	public  String cifradoCesar() {
+		String palabra = this.palabra;
+		String cifrado="";
+		char a;
+		System.out.println(palabra);
+		for (int i = 0; i < palabra.length(); i++) {
+			a = palabra.charAt(i);
+			a = (char) (a + 3);
+			if (a-3=='X' ) {
+				a='A';
+			}else {
+				if (a-3=='Y') {
+					a='B';
+				} else {
+					if (a-3=='Z') {
+						a='C';
+					}
+				}
+			}
+			cifrado=cifrado+String.valueOf(a);
+		}
+;
+		return cifrado;
+	}
+}

@@ -1,0 +1,8 @@
+package Ej5;
+
+public class Cifrado {
+	public  String cifradoCesar(String texto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

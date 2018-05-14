@@ -1,0 +1,33 @@
+package Ej2;
+
+public class Separador {
+	int getParteDecimal(double num) {
+		int cnt = 0;
+		char a;
+		boolean bien = true;
+		String completo = String.valueOf(num);
+		String enteroCadena = "";
+		do {
+
+			a = completo.charAt(cnt);
+			if (a == '.') {
+				bien = false;
+			} else {
+				enteroCadena = enteroCadena + String.valueOf(a);
+			}
+			cnt = cnt + 1;
+
+		} while (bien);
+		Integer entero=Integer.valueOf(enteroCadena);
+		int e=entero;
+		return e;
+
+	}
+
+	int getParteEntera(double num) {
+		return 0;
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,30 @@
+package Ej5;
+
+public class Prueba {
+
+	public static void main(String[] args) {
+		System.out.println("t");
+		String palabra = Entrada.cadena();
+		String cifrado="";
+		char a;
+		System.out.println(palabra);
+		for (int i = 0; i < palabra.length(); i++) {
+			a = palabra.charAt(i);
+			a = (char) (a + 3);
+			if (a-3=='x' ) {
+				a='a';
+			}else {
+				if (a-3=='y') {
+					a='b';
+				} else {
+					if (a-3=='z') {
+						a='c';
+					}
+				}
+			}
+			cifrado=cifrado+String.valueOf(a);
+		}
+System.out.println(cifrado);
+	}
+
+}

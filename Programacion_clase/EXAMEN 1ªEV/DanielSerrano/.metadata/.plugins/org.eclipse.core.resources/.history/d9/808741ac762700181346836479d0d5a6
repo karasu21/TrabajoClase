@@ -1,0 +1,17 @@
+package Ej3;
+
+public class Prueba {
+
+	public static void main(String[] args) {
+		int n=3;
+		int cnt=n;
+		int factorial=n;
+		while (cnt>1) {
+			cnt=cnt-1;
+			factorial=factorial*cnt;
+			
+		}
+		System.out.println(factorial);
+	}
+
+}

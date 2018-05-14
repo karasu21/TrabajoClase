@@ -1,0 +1,39 @@
+package Ej2;
+
+public class Menu {
+
+	public static void main(String[] args) {
+		double num;
+		int op;
+		boolean salir=true;
+		System.out.println("Introduce un numero");
+		num=Entrada.real();
+		
+		do {
+			System.out.println("Elija opcion");
+			System.out.println(" Obtener parte entera--->1");
+			System.out.println(" Obtener parte decimal--->2");
+			System.out.println("\nPara salir introduzca 0");
+			op=Ej3.Entrada.entero();
+			switch (op) {
+			case 1:
+				Menu.getParteEntera(num);
+				break;
+			case 2:
+				getParteDecimal(num);
+				break;
+			case 0:
+				salir=false;
+				break;
+			}
+		} while (salir);
+
+	}
+
+	 int getParteEntera(double num) {
+		return 0;
+		// TODO Auto-generated method stub
+		
+	}
+
+}

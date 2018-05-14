@@ -1,0 +1,55 @@
+En un intento de desesperacion:
+caso 1: el que a primera vista
+		lia=false;	
+		System.out.println("Macizo?");
+		macizo2=Entrada.cadena();
+		do {
+		switch (macizo2) {
+		case "SI":
+			c.setMacizo(true);
+			lia=true;
+			break;
+		case "Si":
+			c.setMacizo(true);
+			lia=true;
+			break;
+		case "si":
+			c.setMacizo(true);
+			lia=true;
+			break;
+		case "no":
+			c.setMacizo(false);
+			lia=true;
+			break;
+		case "NO": 
+			c.setMacizo(false);
+			lia=true;
+			break;
+		case "No":
+			c.setMacizo(false);
+			lia=true;
+			break;
+		default:
+			System.out.println("Introduzca SI o NO");
+			macizo2=Entrada.cadena();
+			break;
+		}
+		} while(!lia);
+caso 2: a punto del suicidio
+
+bien=false;
+	
+	do {
+		System.out.println("Macizo?");
+		macizo2=Entrada.cadena();
+		if (macizo2=="SI" || macizo2=="Si" || macizo2=="si") {
+			c.setMacizo(true);
+			bien=true;
+		}else if (macizo2=="NO"|| macizo2=="No" || macizo2=="no"){
+			c.setMacizo(false);
+			bien=true;
+		}	
+		 else {
+			System.out.println("Introduzca SI o NO");
+		}
+	} while (!bien);

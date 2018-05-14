@@ -1,0 +1,30 @@
+package Ej2;
+
+public class Prueba {
+
+	public static void main(String[] args) {
+		double num=2345.12455;
+		int cnt=0;
+		char a;
+		boolean bien=true;
+		String completo=String.valueOf(num);
+		String entero="";
+		do {
+				
+				
+				
+				a = completo.charAt(cnt);
+				if (a=='.') {
+					bien=false;
+				}else {
+					entero = entero + String.valueOf(a);
+				}
+				cnt=cnt+1;
+				
+			
+			
+		} while (bien);
+		System.out.println(entero);
+	}
+
+}

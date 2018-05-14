@@ -1,0 +1,15 @@
+package Ej3;
+
+public class Prueba {
+
+	public static void main(String[] args) {
+		int n=3;
+		int factorial=n;
+		while (n>1) {
+			factorial=factorial*n-1;
+			
+		}
+		System.out.println(factorial);
+	}
+
+}

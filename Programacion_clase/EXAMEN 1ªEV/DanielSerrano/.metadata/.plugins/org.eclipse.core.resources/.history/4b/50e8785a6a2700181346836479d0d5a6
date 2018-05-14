@@ -1,0 +1,22 @@
+package Ej5;
+
+public class Cifrado {
+	
+	String palabra;
+	
+	public Cifrado(String palabra) {
+		this.palabra = palabra;
+	}
+
+	@Override
+	public String toString() {
+		return "Cifrado [palabra=" + palabra + "]";
+	}
+
+	public  String cifradoCesar() {
+		for (int i = 0; i < this.palabra.length(); i++) {
+			
+		}
+		return null;
+	}
+}

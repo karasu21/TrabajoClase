@@ -1,0 +1,17 @@
+package Ej5;
+
+import Ej4.Entrada;
+
+public class MetodoCesar {
+
+	public static void main(String[] args) {
+		System.out.println("Intoduce texto a cifrar");
+		String texto=Entrada.cadena();
+		Cifrado palabra=new Cifrado();
+		palabra.cifradoCesar(texto);
+		System.out.println(palabra);
+	}
+
+	
+
+}

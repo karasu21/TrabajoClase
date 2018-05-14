@@ -1,0 +1,29 @@
+package Ej3;
+
+public class CoeficientesBinomiales {
+
+	public static void main(String[] args) {
+		int n;
+		int k;
+		do {
+			System.out.println("introduzca valor de n (n,k)");
+			n=Entrada.entero();
+			System.out.println("introduzca valor de k (n,k)");
+			k=Entrada.entero();
+		} while (n<0 || k<0);
+		
+		int nf=factorial(n);
+	}
+
+	private static int factorial(int n) {
+		int factorial=n;
+		while (n>1) {
+			factorial=factorial*n-1;
+			
+		}
+			
+		
+		return 0;
+	}
+
+}

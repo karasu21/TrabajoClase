@@ -1,0 +1,23 @@
+package Ej2;
+
+public class Prueba {
+
+	public static void main(String[] args) {
+		double num=23.12;
+		int cnt=0;
+		char a=' ';
+		String completo=String.valueOf(num);
+		String entero="";
+		do {
+		
+				cnt=cnt+1;
+				a = completo.charAt(cnt);
+				
+				entero = entero + String.valueOf(a);
+			
+			
+		} while (a!='.');
+		System.out.println(entero);
+	}
+
+}

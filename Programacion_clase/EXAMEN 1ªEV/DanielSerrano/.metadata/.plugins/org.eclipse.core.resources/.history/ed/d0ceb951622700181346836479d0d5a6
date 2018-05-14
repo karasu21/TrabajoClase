@@ -1,0 +1,10 @@
+package Ej1;
+
+public class Inicio {
+
+	public static void main(String[] args) {
+		Trabajador n = new Trabajador("juan", 11, 2, 2);
+		System.out.println(n);
+	}
+
+}

@@ -1,0 +1,104 @@
+package Ej1;
+
+public class Trabajador {
+	private String nombre;
+	private int edad;
+	private int categoria;
+	private int antigüedad;
+	public static final int CAT_EMPLEADO = 0;
+	public static final int CAT_ENCARGADO = 1;
+	public static final int CAT_DIRECTIVO = 2;
+	public static final int ANT_NOVATO = 0;
+	public static final int ANT_MADURO = 1;
+	public static final int ANT_EXPERTO = 2;
+
+	public Trabajador(String nombre, int edad, int categoria, int antigüedad) {
+		this.nombre = nombre;
+		this.edad = edad;
+		if (categoria == 0 || categoria == 1 || categoria == 2) {
+			this.categoria = categoria;
+		} else {
+			throw new IllegalArgumentException("Categoria no concuerda con las admitidas");
+		}
+		if (antigüedad == 0 || antigüedad == 1 || antigüedad == 2) {
+			this.antigüedad = antigüedad;
+		} else {
+			throw new IllegalArgumentException("Antigüedad no concuerda con las admitidas");
+		}
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public int getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(int categoria) {
+		if (categoria == 0 || categoria == 1 || categoria == 2) {
+			this.categoria = categoria;
+		} else {
+			throw new IllegalArgumentException("Categoria no concuerda con las admitidas");
+		}
+	}
+
+	public int getAntigüedad() {
+		return antigüedad;
+	}
+
+	public void setAntigüedad(int antigüedad) {
+		if (antigüedad == 0 || antigüedad == 1 || antigüedad == 2) {
+			this.antigüedad = antigüedad;
+		} else {
+			throw new IllegalArgumentException("Antigüedad no concuerda con las admitidas");
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Trabajador [nombre=" + nombre + ", edad=" + edad + ", categoria=" + categoria + ", antigüedad="
+				+ antigüedad + "]";
+	}
+
+	public double calcularSueldo() {
+		double base = 607;
+		double sueldo = 0;
+		if (this.categoria == 0) {
+			sueldo = base + (0.15 * base);
+		} else {
+			if (this.categoria == 1) {
+				sueldo = base + (0.35 * base);
+			} else {
+				if (this.categoria == 2) {
+					sueldo = base + (0.60 * base);
+				}
+			}
+			if (this.antigüedad == 0) {
+				sueldo = sueldo + 150;
+			} else {
+				if (this.antigüedad == 1) {
+					sueldo = sueldo + 300;
+				} else {
+					if (this.antigüedad == 2) {
+						sueldo = sueldo + 600;
+					}
+				}
+			}
+
+		}
+		return sueldo;
+	}
+}

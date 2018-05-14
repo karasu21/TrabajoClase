@@ -1,0 +1,16 @@
+package Ej2;
+
+public class Separador {
+	 int getParteDecimal(double num) {
+			return 0;
+			// TODO Auto-generated method stub
+			
+		}
+
+		int getParteEntera(double num) {
+			return 0;
+			// TODO Auto-generated method stub
+			
+		}
+
+}
