@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,13 +28,16 @@ import java.awt.Color;
 import java.awt.Window.Type;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JCheckBox;
 
 public class EjemploGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextArea textArea;
-	private JTextArea textAreaOrdenada;
+	private JTextArea textAreaAlfabetico;
+	private JTextArea textAreaRepeticiones;
+	private JCheckBox chckbxMayMin;
+	private JTextArea textAreaContenido;
 
 	/**
 	 * Launch the application.
@@ -57,7 +61,7 @@ public class EjemploGUI extends JFrame {
 	public EjemploGUI() {
 		setTitle("Estadistica de palabras");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 500, 450, 264);
+		setBounds(500, 500, 478, 425);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,70 +82,106 @@ public class EjemploGUI extends JFrame {
 		contentPane.add(lblRuta);
 
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setBounds(176, 30, 249, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		JButton btnNewButton_1 = new JButton("Palabras Desordenadas");
+		JButton btnNewButton_1 = new JButton("Obtener Palabras");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Map<String, Integer> mapa = estadisticaPalabras(new File(textField.getText()), true);
-					String texto = "";
-					for (String pal : mapa.keySet()) {
-						texto += pal + " " + mapa.get(pal) + "\n";
-					}
-					textArea.setText(texto);
-
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				mostrarContenido(textAreaContenido);
+				mostrarPalabrasOrdenadas(textAreaAlfabetico, textAreaRepeticiones);
 			}
 		});
-		btnNewButton_1.setBounds(10, 65, 167, 23);
+		btnNewButton_1.setBounds(10, 63, 156, 23);
 		contentPane.add(btnNewButton_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 101, 176, 108);
+		scrollPane.setBounds(10, 252, 196, 88);
 		contentPane.add(scrollPane);
 
-		textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
-
-		JButton btnNewButton_2 = new JButton("Palabras Ordenadas");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					Map<String, Integer> mapa = estadisticaPalabras(new File(textField.getText()), true);
-					Parejas palabras;
-					ArrayList<Parejas> cadena = new ArrayList<Parejas>();
-					for (String pal : mapa.keySet()) {
-						palabras = new Parejas(pal, (Integer) mapa.get(pal));
-						cadena.add(palabras);
-					}
-					Collections.sort(cadena);
-					String texto = "";
-					for (Parejas pareja : cadena) {
-						texto += pareja.getPalabra() + " " + pareja.getRepeticiones() + "\n";
-					}
-					textAreaOrdenada.setText(texto);
-
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_2.setBounds(227, 64, 167, 25);
-		contentPane.add(btnNewButton_2);
+		textAreaAlfabetico = new JTextArea();
+		scrollPane.setViewportView(textAreaAlfabetico);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(229, 101, 196, 108);
+		scrollPane_1.setBounds(256, 252, 196, 88);
 		contentPane.add(scrollPane_1);
 
-		textAreaOrdenada = new JTextArea();
-		scrollPane_1.setViewportView(textAreaOrdenada);
+		textAreaRepeticiones = new JTextArea();
+		scrollPane_1.setViewportView(textAreaRepeticiones);
+
+		chckbxMayMin = new JCheckBox("Ignorar Mayusculas/Minusculas");
+		chckbxMayMin.setBounds(175, 63, 175, 23);
+		contentPane.add(chckbxMayMin);
+
+		JLabel lblNewLabel = new JLabel("Listado por orden alfabetico");
+		lblNewLabel.setBounds(10, 227, 196, 14);
+		contentPane.add(lblNewLabel);
+
+		JLabel lblListadoPorNumero = new JLabel("Listado por numero de repeticiones");
+		lblListadoPorNumero.setBounds(256, 227, 196, 14);
+		contentPane.add(lblListadoPorNumero);
+
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 97, 442, 115);
+		contentPane.add(scrollPane_2);
+
+		textAreaContenido = new JTextArea();
+		scrollPane_2.setViewportView(textAreaContenido);
+	}
+
+	protected void mostrarPalabrasOrdenadas(JTextArea textAreaAlfabetico, JTextArea textAreaRepeticiones) {
+		try {
+			// Ordenado alfabeticamente
+			Map<String, Integer> mapa = estadisticaPalabras(new File(textField.getText()), chckbxMayMin.isSelected());
+			String texto = "";
+			for (String pal : mapa.keySet()) {
+				texto += pal + " " + mapa.get(pal) + "\n";
+			}
+			textAreaAlfabetico.setText(texto);
+
+			// Ordenado por repeticion de palabras
+			ArrayList<Parejas> cadena = new ArrayList<Parejas>();
+			for (String pal : mapa.keySet()) {
+				cadena.add(new Parejas(pal, (Integer) mapa.get(pal)));
+			}
+			Collections.sort(cadena);
+			texto = "";
+			for (Parejas pareja : cadena) {
+				texto += pareja.getPalabra() + " " + pareja.getRepeticiones() + "\n";
+			}
+			textAreaRepeticiones.setText(texto);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	}
+
+	protected void mostrarContenido(JTextArea textAreaContenido) {
+		BufferedReader bfr = null;
+		try {
+			bfr = new BufferedReader(new FileReader(new File(textField.getText())));
+			String contenido;
+			String texto = "";
+			while ((contenido = bfr.readLine()) != null) {
+				texto += contenido + "\n";
+			}
+			textAreaContenido.setText(texto);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				bfr.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	protected void lanzarFileChooser() {
@@ -151,6 +191,7 @@ public class EjemploGUI extends JFrame {
 		int opcion = fc.showOpenDialog(null);
 		if (opcion == JFileChooser.APPROVE_OPTION) {
 			textField.setText(fc.getSelectedFile().getAbsolutePath());
+
 		}
 
 	}
