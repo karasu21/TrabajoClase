@@ -85,7 +85,7 @@ return
 ---11---
 
 
-file:write("E:\book_xquery.html",
+file:write("D:\bailes.html",
 <html>
 <head>
 </head>
@@ -93,26 +93,31 @@ file:write("E:\book_xquery.html",
 <table border="1">
 <tr>
 <td>
-Titulo
+Nombre
 </td>
 <td>
-Categoria
+Profesor
+</td>
+<td>
+Plazas
 </td>
 </tr>
 {
-let $c := bookstore/book
-for $b in $c
-return 
+for $bailes in doc("Bailes.xml")/Bailes/baile[precio/@cuota="trimestral"]
+order by $bailes/plazas ascending
+return
 <tr>
 <td>
-{$b/title/text()}
+{$bailes/nombre/text()}
 </td>
 <td>
-{$b/@category/string()}
+{$bailes/profesor/text()}
+</td>
+<td>
+{$bailes/plazas/text()}
 </td>
 </tr>
 }
 </table>
 </body>
-</html>
-)
+</html>)
