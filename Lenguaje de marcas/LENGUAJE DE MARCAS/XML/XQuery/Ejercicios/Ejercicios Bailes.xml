@@ -29,13 +29,74 @@ $b/nombre
 
 ---5----
 
-for $b in distinct-values (doc("Bailes.xml")/Bailes/baile)
+for $b in distinct-values (doc("Bailes.xml")/Bailes/baile/profesor)
+let $c:=  distinct-values (/Bailes/baile[profesor=$b]/sala)
+order by $b
 return 
 <profesor>
 <nombre>
-{$b/profesor/text()} 
+{$b} 
 </nombre>
 <sala>
-{$b/sala/text()} 
+{$c} 
 </sala>
 </profesor>
+
+---6---
+let $media := avg(/Bailes/baile/precio)
+return
+<media_bailes>
+{$media}
+</media_bailes>
+
+---7---
+
+let $suma:= sum(/Bailes/baile[sala=1]/precio) 
+return 
+<suma_sala1>
+{$suma}
+</suma_sala1>
+
+---8---
+
+let $J_Plazas:= sum(/Bailes/baile[profesor="Jesus Lozano"]/plazas)
+return 
+<Plazas_Jesus>
+{$J_Plazas}
+</Plazas_Jesus>
+
+---9---
+
+for $bailes in doc("Bailes.xml")/Bailes/baile 
+order by $bailes/nombre
+return
+<bailes>
+<nombre>
+{$bailes/nombre/text()}
+</nombre>
+<precio>
+{$bailes/precio/text()}
+</precio>
+<precio_descuento>
+{$bailes/precio/text() - $bailes/precio/text() * 0.15}
+</precio_descuento>
+</bailes>
+
+---10---
+
+for $bailes in doc("Bailes.xml")/Bailes/baile 
+return
+<Bailes>
+{$bailes/* except $bailes/comienzo  except $bailes/fin }
+</Bailes>
+
+---11---
+
+for $bailes in doc("Bailes.xml")/Bailes/baile
+where month-from-date($bailes/fin) - month-from-date($bailes/comienzo) < 8
+return
+$bailes 
+
+
+
+
