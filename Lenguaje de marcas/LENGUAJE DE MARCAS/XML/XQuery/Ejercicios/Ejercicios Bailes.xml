@@ -91,13 +91,13 @@ return
 </Bailes>
 
 ---11---
-for $bailes in doc("Bailes.xml")/Bailes/baile
+for $bailes in /Bailes/baile
 where month-from-date($bailes/fin) - month-from-date($bailes/comienzo) < 8
 return
 $bailes 
 
 ---12---
-for $precio in doc ("Bailes.xml")/Bailes/baile/precio
+for $precio in doc /Bailes/baile/precio
 where $precio >70
 return
 replace value of node $precio/text()
