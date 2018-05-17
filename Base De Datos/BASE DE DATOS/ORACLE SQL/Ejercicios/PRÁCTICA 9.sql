@@ -39,7 +39,7 @@ jefe ref t_empleado
 );
 /
 
-CREATE TYPE t_cliente, AS OBJECT (
+CREATE TYPE t_cliente AS OBJECT (
 idCliente VARCHAR2(5),
 NombreCompania VARCHAR2(40),
 NombreContacto VARCHAR2(30),
@@ -65,8 +65,8 @@ PaginaPrincipal VARCHAR2(500)
 CREATE TYPE t_categoria AS OBJECT (
 idCategoria INT(10),
 NombreCategoria VARCHAR2(40),
-Descripcion VARCHAR2(500)
-Imagen LONGBLOB
+Descripcion VARCHAR2(500),
+Imagen CLOB
 );
 /
 
@@ -85,9 +85,9 @@ Suspendido NUMBER(1)
 
 CREATE TYPE t_detalle_pedido AS OBJECT (
 idProducto ref t_poducto,
-PrecioUnidad DECIMAL(19,4),
+PrecioUnidad NUMBER(19,4),
 Cantidad SMALLINT(5),
-Descuento DOUBLE
+Descuento NUMBER(7,2)
 );
 /
 
@@ -105,11 +105,11 @@ IdPedido INT(10),
 Cliente ref t_cliente,
 Empleado ref t_empleado,
 Transporte ref t_empresa_transporte,
-FechaPedido DATETIME,
-FechaEntrega DATETIME,
-FechaEnvio DATETIME,
+FechaPedido CHAR(10),
+FechaEntrega CHAR(10),
+FechaEnvio CHAR(10),
 FormaEnvio INT(10),
-Cargo DECIMAL(19,4),
+Cargo NUMBER(19,4),
 Destinatario VARCHAR2(40),
 DireccionDestinatario VARCHAR2(60),
 CiudadDestinatario VARCHAR2(15),
@@ -119,15 +119,36 @@ PaisDestinatario VARCHAR2(15)
 );
 /
 
-
-
-CREATE TYPE pedido_y_detalles AS OBJECT (
+CREATE TABLE pedidos_t(
 pedido t_pedido,
-detalles nt_detalle_pedido
-);
+detalles nt_detalle_pedido)
+NESTED TABLE detalles STORE AS detalles_nr_table;
 /
 
-CREATE TABLE pedidos_t OF pedido_y_detalles
+---3---
+
+DECLARE
+pedido t_pedido;
+categoria t_categoria
+	CURSOR all_pedidos IS
+		SELECT value (b) AS pedidos_c
+		FROM pedidos b;
+	
+	CURSOR all_categorias IS
+		SELECT value (b) AS categorias_c
+		FROM categorias b;	
+		
+BEGIN
+	FOR one_t_categoria IN all_categorias LOOP
+		categoria := one_t_categoria.categorias_c;
+	END LOOP;
+
+	FOR one_t_pedido IN all_pedidos LOOP
+		pedido := one_t_pedido.pedidos_c;
+	END LOOP;
+
+END;
+/
 
 
 
