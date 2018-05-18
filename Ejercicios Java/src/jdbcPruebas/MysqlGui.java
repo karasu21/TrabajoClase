@@ -168,12 +168,14 @@ public class MysqlGui extends JFrame {
 				pstBuscarCodigo = cn.prepareStatement(sqlBusqueda);
 				pstBuscarCodigo.setString(1, textFieldBusqueda.getText());
 				ResultSet rs = pstBuscarCodigo.executeQuery();
-				 while (rs.next())
+				 if (rs.next())
 				    {
 				    	String resultado=rs.getString (1);
 				    	textFieldResultado.setText(resultado);
 				       
-				    }    
+				    }  else {
+				    	JOptionPane.showMessageDialog(null, "No se encontraron resultados", "Error", JOptionPane.ERROR_MESSAGE);
+				    }   
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
