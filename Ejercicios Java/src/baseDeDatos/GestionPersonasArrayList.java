@@ -12,11 +12,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+
+import javax.swing.JOptionPane;
 
 public class GestionPersonasArrayList implements Serializable {
 
@@ -53,6 +60,7 @@ public class GestionPersonasArrayList implements Serializable {
 		m.agregarOpcion("Importar desde Personas.bin");
 		m.agregarOpcion("Exportar a Personas.obg");
 		m.agregarOpcion("Importar desde Personas.obg");
+		m.agregarOpcion("Exportar a Mysql");
 
 		m.agregarOpcion("Salir");
 		String op;
@@ -105,9 +113,50 @@ public class GestionPersonasArrayList implements Serializable {
 			case "15":
 				importarObg();
 				break;
+			case "16":
+				exportarASql();
+				break;
 			}
 		} while (!op.equals("0"));
 		System.out.println("ADIOS.");
+	}
+
+	private static void exportarASql() {
+		Connection cn = conectarBD("localhost", "personas", "root", "");
+		insertarPersona(cn);
+
+	}
+
+	private static void insertarPersona(Connection cn) {
+		PreparedStatement pstInsertar;
+		for (Persona persona : bd) {
+			String sqlInsert = "INSERT INTO persona VALUES(?,?,?,?,?,?)";
+		try {
+			pstInsertar = cn.prepareStatement(sqlInsert);
+			pstInsertar.setString(1, persona.getDni());
+			pstInsertar.setString(2, persona.getNombre());
+			pstInsertar.setDate(3, new java.sql.Date( persona.getFechaNac().getTime()));
+			pstInsertar.setString(4, String.valueOf(persona.getSexo()));
+			pstInsertar.setDouble(5, persona.getAltura());
+			pstInsertar.setDouble(6, (float) persona.getPeso());
+			pstInsertar.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+
+	}
+
+	private static Connection conectarBD(String string, String string2, String string3, String string4) {
+		Connection cn = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			cn = DriverManager.getConnection("jdbc:mysql://localhost/personas", "root", "");
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return cn;
 	}
 
 	private static void listado() {

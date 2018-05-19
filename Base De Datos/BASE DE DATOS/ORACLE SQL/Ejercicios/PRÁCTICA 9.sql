@@ -22,6 +22,8 @@ Pais VARCHAR2(15)
 );
 /
 
+CREATE TABLE direccion_t OF t_direccion;
+
 CREATE TYPE t_empleado AS OBJECT (
 idEmpleado INT(10),
 Apellidos VARCHAR2(20),
@@ -39,6 +41,8 @@ jefe ref t_empleado
 );
 /
 
+CREATE TABLE empleado_t OF t_empleado;
+
 CREATE TYPE t_cliente AS OBJECT (
 idCliente VARCHAR2(5),
 NombreCompania VARCHAR2(40),
@@ -49,6 +53,8 @@ Telefono VARCHAR2(24),
 Fax VARCHAR2(24)
 );
 /
+
+CREATE TABLE cliente_t OF t_cliente;
 
 CREATE TYPE t_proveedor AS OBJECT (
 idProveedore INT(10),
@@ -62,6 +68,8 @@ PaginaPrincipal VARCHAR2(500)
 );
 /
 
+CREATE TABLE proveedor_t OF t_proveedor;
+
 CREATE TYPE t_categoria AS OBJECT (
 idCategoria INT(10),
 NombreCategoria VARCHAR2(40),
@@ -69,6 +77,8 @@ Descripcion VARCHAR2(500),
 Imagen CLOB
 );
 /
+
+CREATE TABLE categoria_t OF t_categoria;
 
 CREATE TYPE t_poducto AS OBJECT (
 NombreProducto VARCHAR2(40),
@@ -83,6 +93,8 @@ Suspendido NUMBER(1)
 );
 /
 
+CREATE TABLE producto_t OF t_poducto;
+
 CREATE TYPE t_detalle_pedido AS OBJECT (
 idProducto ref t_poducto,
 PrecioUnidad NUMBER(19,4),
@@ -90,6 +102,8 @@ Cantidad SMALLINT(5),
 Descuento NUMBER(7,2)
 );
 /
+
+CREATE TABLE detalle_pedido_t OF t_detalle_pedido;
 
 CREATE TYPE nt_detalle_pedido AS TABLE OF t_detalle_pedido;
 
@@ -99,6 +113,8 @@ NombreCompania VARCHAR2(40),
 Telefono VARCHAR2(24)
 );
 /
+
+CREATE TABLE empresa_transporte_t OF t_empresa_transporte;
 
 CREATE TYPE t_pedido AS OBJECT (
 IdPedido INT(10),
@@ -119,6 +135,8 @@ PaisDestinatario VARCHAR2(15)
 );
 /
 
+CREATE TABLE pedido_t OF t_pedido;
+
 CREATE TABLE pedidos_t(
 pedido t_pedido,
 detalles nt_detalle_pedido)
@@ -128,24 +146,22 @@ NESTED TABLE detalles STORE AS detalles_nr_table;
 ---3---
 
 DECLARE
-pedido t_pedido;
-categoria t_categoria
-	CURSOR all_pedidos IS
-		SELECT value (b) AS pedidos_c
-		FROM pedidos b;
-	
-	CURSOR all_categorias IS
-		SELECT value (b) AS categorias_c
-		FROM categorias b;	
+		CURSOR c_categoria IS
+		SELECT idCategoria, NombreCategoria, Descripcion, Imagen
+		FROM categorias;	
 		
+		CURSOR c_proveedor IS
+		SELECT idProveedore, NombreCompania, NombreContacto, CargoContacto,Direccion, Ciudad, Region, CodPostal,Pais, Telefono,Fax,PaginaPrincipal
+		FROM proveedores;	
 BEGIN
-	FOR one_t_categoria IN all_categorias LOOP
-		categoria := one_t_categoria.categorias_c;
-	END LOOP;
+FOR opcion IN c_categoria LOOP
+  INSERT INTO categoria_t VALUES (opcion.idCategoria,opcion.NombreCategoria,direcopcion.Descripcion,opcion.Imagen);
+ END LOOP;
+END;
 
-	FOR one_t_pedido IN all_pedidos LOOP
-		pedido := one_t_pedido.pedidos_c;
-	END LOOP;
+FOR opcion IN c_proveedor LOOP
+  INSERT INTO proveedor_t VALUES (opcion.idProveedor,opcion.NombreCompania,opcion.NombreContacto,opcion.CargoContacto,t_direccion(null,null,null,null,null),opcion.Telefono,opcion.Fax,opcion.PaginaPrincipal);
+ END LOOP;
 
 END;
 /
